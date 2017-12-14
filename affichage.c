@@ -24,16 +24,18 @@ void decoupage(int c, int l)
 	unsigned int xx=570, yy=270, x=0, y=0;
 
 	dec=(struct image *) malloc(c*l*sizeof(struct image));
+	pos=(struct position *) malloc(c*l*sizeof(struct position));
 
 	
 	for (int i = 0; i < l; ++i)
 	{
 		for (int d = 0; d < c; ++d)
 		{
+
 			dec[a].x=x;
 			dec[a].y=y;
-			dec[a].xx=xx;
-			dec[a].yy=yy;
+			dec[a].xx=xx/c;
+			dec[a].yy=yy/l;
 			pos[a].x=x;
 			pos[a].y=y;
 			a++;
@@ -48,22 +50,29 @@ void decoupage(int c, int l)
 
 void affichage(int c, int l)
 {
+	int a=(c*l)-1;
+
 	for (int i = 0; i < c*l; ++i)
 	{
-		ChargerImage("./slide-1.jpg",((pos[i].x)+1), ((pos[i].y)+1), (dec[i].x), (dec[i].y), (dec[i].xx), (dec[i].yy));
+		ChargerImage("./slide-1.jpg",((pos[a].x)+1), ((pos[a].y)+1), (dec[i].x), (dec[i].y), (dec[i].xx), (dec[i].yy));
+		printf("i=%d a=%d \n",i,a );
+		a--;
 	}
 }
 
 int main(void)
 {
 	unsigned int c, l;
-	InitialiserGraphique();
-    CreerFenetre(10,10,1000,1000);
+	
 
    	printf("nombre de ligne\n");
    	scanf("%u",&l);
    	printf("nombre de colone\n");
    	scanf("%u",&c);
+
+   	InitialiserGraphique();
+    CreerFenetre(10,10,1000,1000);
+
    	decoupage(c,l);
    	affichage(c,l);
 
