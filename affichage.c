@@ -1,12 +1,17 @@
 #include <graph.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
+#include <math.h>
+
+
 struct image
 {
 	unsigned int x;
 	unsigned int y;
 	unsigned int xx;
 	unsigned int yy;
+	unsigned int pose;
 };
 
 struct position
@@ -36,6 +41,7 @@ void decoupage(int c, int l)
 			dec[a].y=y;
 			dec[a].xx=xx/c;
 			dec[a].yy=yy/l;
+			dec[a].pose=a;
 			pos[a].x=x;
 			pos[a].y=y;
 			a++;
@@ -45,6 +51,10 @@ void decoupage(int c, int l)
 		x=0;
 		y=1+y+(yy/l);
 	}
+	dec[a].x=x;
+		dec[0].y=y;
+		dec[0].xx=xx/c;
+		dec[0].yy=yy/l;
 
 }
 
@@ -54,9 +64,73 @@ void affichage(int c, int l)
 
 	for (int i = 0; i < c*l; ++i)
 	{
-		ChargerImage("./slide-1.jpg",((pos[a].x)+1), ((pos[a].y)+1), (dec[i].x), (dec[i].y), (dec[i].xx), (dec[i].yy));
-		printf("i=%d a=%d \n",i,a );
-		a--;
+		ChargerImage("./slide-1.jpg",((pos[dec[i].pose].x)+1), ((pos[dec[i].pose].y)+1), (dec[i].x), (dec[i].y), (dec[i].xx), (dec[i].yy));
+	}
+}
+
+void melange(int c, int l)
+{
+	int i,t,a;
+	srand((unsigned int) time(NULL));
+
+	
+/*probléme seg fault*/
+
+
+	for (i = 0; i < 50; ++i)
+	{
+		t=rand();
+		t=t%4;
+		printf("%d  %d  %u\n",i, t, dec[0].pose);
+		
+		if (t==0 && dec[0].pose>0)
+		{
+			for (a = 1; a < c*l; ++a)
+			{
+				if (dec[0].pose-1 == dec[a].pose)
+				{
+					dec[a].pose = dec[0].pose;
+					a=c*l;
+				}
+			}
+			dec[0].pose--;
+
+		}else if (t==1 && (dec[0].pose-l)>=0)
+		{
+			for (a = 1; a < c*l; ++a)
+			{
+				if (dec[0].pose-l == dec[a].pose)
+				{
+					dec[a].pose = dec[0].pose;
+					a=c*l;
+				}
+			}
+			dec[0].pose = dec[0].pose-l;
+
+		}else if (t==2 && dec[0].pose<(c*l)-1)
+		{
+			for (a = 1; a < c*l; ++a)
+			{
+				if (dec[0].pose-1 == dec[a].pose)
+				{
+					dec[a].pose = dec[0].pose;
+					a=c*l;
+				}
+			}
+			dec[0].pose++;
+
+		}else if (t==3 && (dec[0].pose+l)<(c*l)-1)
+		{
+			for (a = 1; a < c*l; ++a)
+			{
+				if (dec[0].pose+l == dec[a].pose)
+				{
+					dec[a].pose = dec[0].pose;
+					a=c*l;
+				}
+			}
+			dec[0].pose = dec[0].pose+l;
+		}
 	}
 }
 
@@ -71,9 +145,10 @@ int main(void)
    	scanf("%u",&c);
 
    	InitialiserGraphique();
-    CreerFenetre(10,10,1000,1000);
+    CreerFenetre(10,10,700,1000);
 
    	decoupage(c,l);
+   	melange(c,l);
    	affichage(c,l);
 
       while (1)
