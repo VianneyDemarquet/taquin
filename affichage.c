@@ -7,35 +7,14 @@ Demarquet
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-#include <math.h>
+#include "entete.h"
 
 
-struct image
-{
-	unsigned int x;
-	unsigned int y;
-	unsigned int xx;
-	unsigned int yy;
-	unsigned int pose;
-};
-
-struct position
-{
-	unsigned int x;
-	unsigned int y;
-};
-
-struct image *dec;
-struct position *pos;
 
 void decoupage(int c, int l)
 {
 	unsigned int a=0;
 	unsigned int xx=570, yy=270, x=0, y=0;
-
-	dec=(struct image *) malloc(c*l*sizeof(struct image));
-	pos=(struct position *) malloc(c*l*sizeof(struct position));
-
 	
 	for (int i = 0; i < l; ++i)
 	{
@@ -61,27 +40,25 @@ void decoupage(int c, int l)
 
 }
 
-void affichage(int c, int l)
-{
-	int a=(c*l)-1;
 
-	for (int i = 0; i < c*l; ++i)
-	{
-		ChargerImage("./slide-1.jpg",((pos[dec[i].pose].x)+1), ((pos[dec[i].pose].y)+1), (dec[i].x), (dec[i].y), (dec[i].xx), (dec[i].yy));
-	}
-}
 
 void melange(int c, int l)
 {
-	int i,t,a,x;
+	int i,t;
 	srand((unsigned int) time(NULL));
 	
 	for (i = 0; i < 500; ++i)
 	{
 		t=rand();
 		t=t%4;
+		modif(t,c,l);
+	}
+}
 
-		if (t==0 && dec[0].pose>0 && dec[0].pose%c!=0 && dec[0].pose%(c-1)!=0)
+void modif(int t, int c, int l)
+{
+	int a;
+	if (t==0 && dec[0].pose>0 && (dec[0].pose)%c!=0)
 		{
 			for (a = 1; a < c*l; ++a)
 			{
@@ -94,20 +71,20 @@ void melange(int c, int l)
 			}
 			dec[0].pose--;
 
-		}else if (t==1 && (dec[0].pose)>=l)
+		}else if (t==1 && (dec[0].pose)>=c)
 		{
 			for (a = 1; a < c*l; ++a)
 			{
-				if (dec[0].pose-l == dec[a].pose)
+				if (dec[0].pose-c == dec[a].pose)
 				{				
 					dec[a].pose = dec[0].pose;
 					a=c*l;
 					
 				}
 			}
-			dec[0].pose = dec[0].pose-l;
+			dec[0].pose = dec[0].pose-c;
 
-		}else if (t==2 && dec[0].pose<(c*l)-1 && dec[0].pose%c!=0 && dec[0].pose%(c+1)!=0)
+		}else if (t==2 && dec[0].pose<(c*l) && (dec[0].pose+1)%c!=0)
 		{
 			for (a = 1; a < c*l; ++a)
 			{
@@ -120,43 +97,32 @@ void melange(int c, int l)
 			}
 			dec[0].pose++;
 
-		}else if (t==3 && (dec[0].pose)<((c*l)-1)-l)
+		}else if (t==3 && (dec[0].pose)<((c*l))-c)
 		{
 			for (a = 1; a < c*l; ++a)
 			{
-				if (dec[0].pose+l == dec[a].pose)
+				if (dec[0].pose+c == dec[a].pose)
 				{
 					dec[a].pose = dec[0].pose;
 					a=c*l;
 					
 				}
 			}
-			dec[0].pose = dec[0].pose+l;
+			dec[0].pose = dec[0].pose+c;
 		}
+
+}
+
+
+void affichage(int c, int l)
+{
+	int a=(c*l)-1;
+	int i,x=0;
+
+	for (i = 0; i < c*l; ++i)
+	{
+		ChargerImage("./slide-1.jpg",((pos[dec[i].pose].x)+1), ((pos[dec[i].pose].y)+1), (dec[i].x), (dec[i].y), (dec[i].xx), (dec[i].yy));
 
 	}
 }
 
-int main(void)
-{
-	unsigned int c, l;
-	
-
-   	printf("nombre de ligne\n");
-   	scanf("%u",&l);
-   	printf("nombre de colone\n");
-   	scanf("%u",&c);
-
-   	InitialiserGraphique();
-    CreerFenetre(10,10,700,1000);
-
-   	decoupage(c,l);
-   	melange(c,l);
-   	affichage(c,l);
-      while (1)
-	 	{}
-    FermerGraphique();
-    	 free(dec);
- 
-    return EXIT_SUCCESS;
-}
