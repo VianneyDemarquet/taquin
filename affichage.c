@@ -11,7 +11,7 @@ Demarquet
 
 
 
-void decoupage(int c, int l)
+int decoupage(int c, int l)
 {
 	unsigned int a=0;
 	unsigned int xx=570, yy=270, x=0, y=0;
@@ -37,7 +37,7 @@ void decoupage(int c, int l)
 	}
 		dec[0].x=x;
 		dec[0].y=y;
-
+		return (int)yy;
 }
 
 
@@ -117,10 +117,9 @@ void affichage(int c, int l)
 {
 	int a=(c*l)-1;
 	int i,x=0;
-
 	for (i = 0; i < c*l; ++i)
 	{
-		ChargerImage("./slide-1.jpg",((pos[dec[i].pose].x)+1), ((pos[dec[i].pose].y)+1), (dec[i].x), (dec[i].y), (dec[i].xx), (dec[i].yy));
+		ChargerImage("./image1.jpg",((pos[dec[i].pose].x)+1), ((pos[dec[i].pose].y)+1), (dec[i].x), (dec[i].y), (dec[i].xx), (dec[i].yy));
 
 	}
 }
