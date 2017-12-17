@@ -29,7 +29,16 @@ int iclavier(void)
 
 int isouris(void)
 {
-
+	if (_X>15 && _X<135)
+	{
+		return 0;
+	} else if (_X>445 && _X<545)
+	{
+		return 1;
+	}else if (_X>245 && _X<345)
+	{
+		return 2;
+	}
 }
 
 void affichagemi(int x)
@@ -75,11 +84,10 @@ int choisirimage(void)
 		if (ToucheEnAttente()==1)
 		{
 			z=iclavier();
-		} /*else if (SourisCliquee()==1)
+		} else if (SourisCliquee()==1)
 		{
 			z=isouris();
-			printf("sljoqoq\n");
-		}*/
+		}
 			
 		if (z==0 && x>1)
 		{
