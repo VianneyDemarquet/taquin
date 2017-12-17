@@ -105,3 +105,54 @@ int choisirimage(void)
 		z=5;
 	}
 }
+
+int nbcolone(void)
+{
+	int x=0;
+	affichagenb();
+	EcrireTexte(245,20,"nombre de colonnes",2);
+	while (x<3 || x>8)
+	{
+		if (ToucheEnAttente()==1)
+		{
+			x=nbclavier();
+		} else if (SourisCliquee()==1)
+		{
+			x=nbsouris();
+		}
+
+	}
+}
+
+int nbligne(void)
+{
+	int x=0;
+	affichagenb();
+	EcrireTexte(245,20,"nombre de lignes",2);
+	while (x<3 || x>8)
+	{
+		if (ToucheEnAttente()==1)
+		{
+			x=nbclavier();
+		} else if (SourisCliquee()==1)
+		{
+			x=nbsouris();
+		}
+
+	}
+}
+
+int nbsouris(void)
+{
+
+}
+
+int nbclavier(void)
+{
+	/*pavé num + shift*/
+}
+
+void affichagenb(void)
+{
+	/*chiffre*/
+}

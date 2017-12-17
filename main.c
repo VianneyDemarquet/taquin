@@ -21,22 +21,20 @@ int main(void)
     /*seg fault*/
     //ChoisirCouleurDessin(coul);
 
-
-   	printf("nombre de ligne\n");
-   	scanf("%u",&l);
-   	printf("nombre de colone\n");
-   	scanf("%u",&c);
-
-    dec=(struct image *) malloc(c*l*sizeof(struct image));
-    pos=(struct position *) malloc(c*l*sizeof(struct position));
-   	InitialiserGraphique();
-
+    InitialiserGraphique();
     CreerFenetre(10,10,700,1000);
 
     EffacerEcran(coul);
     image=choisirimage();
-    
+
     EffacerEcran(coul);
+    c=nbcolone();
+    EffacerEcran(coul);
+    l=nbligne();
+    EffacerEcran(coul);
+
+    dec=(struct image *) malloc(c*l*sizeof(struct image));
+    pos=(struct position *) malloc(c*l*sizeof(struct position));
 
    	yy=decoupage(c,l,image);
    	melange(c,l);

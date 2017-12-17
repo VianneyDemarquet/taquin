@@ -39,5 +39,7 @@ int control(int x, int c,int image);
 
 /*menu*/
 int choisirimage(void);
+int nbcolone(void);
+int nbligne(void);
 
 #endif /*  ENTETE_H */
