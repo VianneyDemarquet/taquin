@@ -11,11 +11,25 @@ Demarquet
 
 
 
-int decoupage(int c, int l)
+int decoupage(int c, int l, int image)
 {
 	unsigned int a=0;
-	unsigned int xx=570, yy=270, x=0, y=0;
-	
+	unsigned int xx, yy, x=0, y=0;
+	if (image==1)
+	{
+		xx=570;
+		yy=270;
+	}else if (image==2)
+	{
+		xx=332;
+		yy=300;
+	}else if (image==3)
+	{
+		xx=640;
+		yy=426;
+	}
+
+
 	for (int i = 0; i < l; ++i)
 	{
 		for (int d = 0; d < c; ++d)
@@ -113,14 +127,29 @@ void modif(int t, int c, int l)
 }
 
 
-void affichage(int c, int l)
+void affichage(int c, int l,int image)
 {
 	int a=(c*l)-1;
 	int i,x=0;
-	for (i = 0; i < c*l; ++i)
+	if (image==1)
 	{
-		ChargerImage("./image1.jpg",((pos[dec[i].pose].x)+1), ((pos[dec[i].pose].y)+1), (dec[i].x), (dec[i].y), (dec[i].xx), (dec[i].yy));
-
+			for (i = 0; i < c*l; ++i)
+		{
+			ChargerImage("./image1.jpg",((pos[dec[i].pose].x)+1), ((pos[dec[i].pose].y)+1), (dec[i].x), (dec[i].y), (dec[i].xx), (dec[i].yy));
+		}
+	}else if (image==2)
+	{
+			for (i = 0; i < c*l; ++i)
+		{
+			ChargerImage("./image2.png",((pos[dec[i].pose].x)+1), ((pos[dec[i].pose].y)+1), (dec[i].x), (dec[i].y), (dec[i].xx), (dec[i].yy));
+		}
+	}if (image==3)
+	{
+			for (i = 0; i < c*l; ++i)
+		{
+			ChargerImage("./image3.jpg",((pos[dec[i].pose].x)+1), ((pos[dec[i].pose].y)+1), (dec[i].x), (dec[i].y), (dec[i].xx), (dec[i].yy));
+		}
 	}
+
 }
 

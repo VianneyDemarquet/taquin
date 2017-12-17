@@ -12,17 +12,17 @@ int clavier(void)
 {
 	unsigned long x=0;
 
-	x= Touche();
-	if (x==65361lu)
+	x=Touche();
+	if (x==XK_Left)
 		return 0;
 
-	else if (x==65362lu)
+	else if (x==XK_Up)
 		return 1;
 
-	else if (x==65363lu)
+	else if (x==XK_Right)
 		return 2;
 
-	else if (x==65364lu)
+	else if (x==XK_Down)
 		return 3;
 }	
 
@@ -42,7 +42,7 @@ int souris(void)
 		return 3;
 }
 
-int control(int c, int l)
+int control(int c, int l,int image)
 {
 	int x=5;
 	if (ToucheEnAttente()==1)
@@ -55,7 +55,7 @@ int control(int c, int l)
 	if (x!=5)
 	{
 		modif(x,c,l);
-		affichage(c,l);
+		affichage(c,l,image);
 		return 1;
 	}
 	return 0;

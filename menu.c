@@ -9,80 +9,91 @@ Demarquet
 #include "entete.h"
 
 
-void image1(void)
-{
-	ChargerImage("./image1.jpg",10, 10,0,0,570,240);
-}
-
-void image2(void)
-{
-	ChargerImage("./image2.jpg",10, 10,0,0,570,240);
-}
-
-void image3(void)
-{
-	ChargerImage("./image3.jpg",10, 10,0,0,570,240);
-}
-
-
-/* renvoi toujour 1*/
 
 
 int iclavier(void)
 {
 	unsigned long x=0;
-	if (x==65361lu)
+	x=Touche();
+	if (x==XK_Left)
+	{
 		return 0;
-	else if (x==65363lu)
+	} else if (x==XK_Right)
+	{
 		return 1;
-	else if (x==65293)
-		return 3;
+	} else if (x==XK_Return)
+	{
+		return 2;
+	}
 }
 
 int isouris(void)
 {
 
 }
-char* choisirimage(void)
-{
-	int x=1,y=0,z;
 
+void affichagemi(int x)
+{
+		
+	if (x!=1)
+	{
+		DessinerRectangle(15,475,120,30);
+		EcrireTexte(20,500,"precedent",2);
+	} 
+	 if(x!=3)
+	{
+		DessinerRectangle(445,475,100,30);
+		EcrireTexte(450,500,"suivant",2);
+	}
+	DessinerRectangle(245,475,100,30);
+	EcrireTexte(250,500,"choisir",2);
+	
+}
+
+
+int choisirimage(void)
+{
+	int x=2,y=0,z=5;
+	couleur coul;
+	coul = CouleurParComposante(255, 255, 255);
 	while (y==0)
 	{
-
+		
+		
 		if (x==1)
 		{
-			image1();
-		}else if(x==2);
+			ChargerImage("./image1.jpg",10, 10,0,0,570,240);
+		}else if(x==2)
 		{
-			image2();
-		} if(x==3)
+			ChargerImage("./image2.png",10, 10,0,0,332,300);
+		} else if(x==3)
 		{
-			image3();
+			ChargerImage("./image3.jpg",10, 10,0,0,640,426);
 		}
-		
-		
-		
-		if (x!=1)
-		{
-			DessinerRectangle(15,425,120,30);
-			EcrireTexte(20,450,"precedent",2);
-		} 
-		 if(x!=3)
-		{
-			DessinerRectangle(445,425,100,30);
-			EcrireTexte(450,450,"suivant",2);
-		}
-		DessinerRectangle(245,425,100,30);
-		EcrireTexte(250,450,"choisir",2);
-		
+		affichagemi(x);
+
 		if (ToucheEnAttente()==1)
 		{
-			x=iclavier();
-			printf("%d\n", x);
-		} else if (SourisCliquee()==1)
+			z=iclavier();
+		} /*else if (SourisCliquee()==1)
 		{
-			x=isouris();
+			z=isouris();
+			printf("sljoqoq\n");
+		}*/
+			
+		if (z==0 && x>1)
+		{
+			x--;
+			EffacerEcran(coul);
+		} else if(z==1 && x<3)
+		{
+			x++;
+			EffacerEcran(coul);
+		} 
+		if(z==2)
+		{
+			return x;
 		}
+		z=5;
 	}
 }

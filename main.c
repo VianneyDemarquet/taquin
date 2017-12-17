@@ -12,17 +12,14 @@ Demarquet
 int main(void)
 {
   unsigned int c, l, yy;
-  int x, compteur=0;
+  int x, compteur=0, image;
   couleur coul;
   char tab[4], nom[11];
-	char * w=NULL;
-    coul = CouleurParComposante(255, 255, 255);
 
-    w=nom;
+  coul = CouleurParComposante(255, 255, 255);
 
     /*seg fault*/
     //ChoisirCouleurDessin(coul);
-
 
 
    	printf("nombre de ligne\n");
@@ -37,16 +34,17 @@ int main(void)
     CreerFenetre(10,10,700,1000);
 
     EffacerEcran(coul);
-    w=choisirimage();
+    image=choisirimage();
+    
+    EffacerEcran(coul);
 
-
-   	yy=decoupage(c,l);
+   	yy=decoupage(c,l,image);
    	melange(c,l);
-   	affichage(c,l);
+   	affichage(c,l,image);
     
     while(1)
     {
-    x=control(c,l);
+    x=control(c,l,image);
     if (x==1 && compteur<1000)
     {
       compteur++;

@@ -26,18 +26,18 @@ struct image *dec;
 struct position *pos;
 
 /*affichage*/
-int decoupage(int c, int l);
+int decoupage(int c, int l, int image);
 
-void affichage(int c, int l);
+void affichage(int c, int l,int image);
 
 void melange(int c, int l);
 
 void modif(int x, int c, int l);
 
 /*control*/
-int control(int x, int c);
+int control(int x, int c,int image);
 
 /*menu*/
-char* choisirimage(void);
+int choisirimage(void);
 
 #endif /*  ENTETE_H */
