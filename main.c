@@ -31,7 +31,7 @@ int main(void)
     
     while(1)
     {
-    clavier(c,l);
+    changement(c,l);
   }
 
     free(dec);

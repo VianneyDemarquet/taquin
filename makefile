@@ -1,3 +1,7 @@
+#Vianney
+#Demarquet
+
+
 taquin: affichage.o clavier.o main.o
 		gcc affichage.o clavier.o main.o -o taquin -lgraph
 

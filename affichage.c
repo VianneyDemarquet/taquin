@@ -110,7 +110,6 @@ void modif(int t, int c, int l)
 			}
 			dec[0].pose = dec[0].pose+c;
 		}
-
 }
 
 

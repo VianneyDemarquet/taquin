@@ -34,6 +34,7 @@ void melange(int c, int l);
 
 void modif(int x, int c, int l);
 
-/*clavier*/
-int clavier(int c, int l);
+/*control*/
+void changement(int x, int c);
+
 #endif /*  ENTETE_H */
