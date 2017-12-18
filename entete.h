@@ -28,7 +28,7 @@ struct position *pos;
 /*affichage*/
 int decoupage(int c, int l, int image);
 
-void affichage(int c, int l,int image,int compteur);
+int affichage(int c, int l,int image,int compteur);
 
 void melange(int c, int l);
 
@@ -36,15 +36,21 @@ int modif(int x, int c, int l);
 
 /*control*/
 int control(int x, int c,int image);
+
 int iclavier(void);
 int isouris(void);
+
 int nbsouris(void);
 int nbclavier(void);
+
+int menuclavier(void);
+int menusouris(void);
 
 /*menu*/
 int choisirimage(void);
 int nbcolone(void);
 int nbligne(void);
+int fin(int yy);
 
 /*compteur*/
 int compteur(int x, int comp, unsigned int yy);

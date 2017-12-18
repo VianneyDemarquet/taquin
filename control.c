@@ -68,8 +68,7 @@ int control(int c, int l,int image)
 
 int iclavier(void)
 {
-	unsigned long x=0;
-	x=Touche();
+	unsigned long x=Touche();
 	if (x==XK_Left)
 	{
 		return 0;
@@ -162,5 +161,30 @@ int nbclavier(void)
 			return 8;
 		}
 	
+	return 0;
+}
+
+int menuclavier(void)
+{
+	unsigned long x=Touche();
+	if (x==XK_Left)
+	{
+		return 8;
+	} else if (x==XK_Right)
+	{
+		return 9;
+	}
+	return 0;
+}
+
+int menusouris(void)
+{
+	if (_X>145 && _X<290)
+	{
+		return 8;
+	} else if (_X>445 && _X<570)
+	{
+		return 9;
+	}
 	return 0;
 }

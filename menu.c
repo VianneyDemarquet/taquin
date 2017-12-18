@@ -125,3 +125,26 @@ int nbligne(void)
 	}
 	return x;
 }
+
+
+int fin(int yy)
+{
+	int x=0;
+	DessinerRectangle(290, yy+28, 80, 25);
+	EcrireTexte(300, yy+50, "gagne", 2);
+	EcrireTexte(150, yy+120, "recommencer", 2);
+    DessinerRectangle(145, yy+98, 145, 25);
+    EcrireTexte(450, yy+120, "quitter", 2);
+    DessinerRectangle(445, yy+98, 95, 25);
+	while (x==0)
+	{
+    	if (ToucheEnAttente()==1)
+		{
+			x=menuclavier();
+		} else if (SourisCliquee()==1)
+		{
+			x=menusouris();
+		}
+    }
+    return x;
+}

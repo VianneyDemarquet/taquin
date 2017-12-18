@@ -19,7 +19,7 @@ void clear(void)
 int compteur(int x, int comp, unsigned int yy)
 {
   char tab[4];
-   if (x==1 && comp>=0 && comp<1000)
+   if (x==1 && comp<1000)
     {
       comp++;
       
@@ -34,12 +34,14 @@ int compteur(int x, int comp, unsigned int yy)
 int main(void)
 {
   unsigned int c, l, yy;
-  int x, image, comp=0;
+  int x, image, comp, k=0;
   char nom[11];
-
-    InitialiserGraphique();
-    CreerFenetre(10,10,700,700);
-
+  InitialiserGraphique();
+  CreerFenetre(10,10,700,700);
+  while (k<9)
+  {
+    k=0;
+    comp=0;
     clear();
     image=choisirimage();
 
@@ -54,15 +56,16 @@ int main(void)
 
    	yy=decoupage(c,l,image);
    	melange(c,l);
-    
-    while(comp>=0)
+    affichage(c,l,image,comp);
+    while(k<8)
     {
-      affichage(c,l,image,comp);
       x=control(c,l,image);
-      comp=compteur(x,comp,yy);   
+      comp=compteur(x,comp,yy); 
+      k=affichage(c,l,image,comp);
     }
 
     free(dec);
+  }
     FermerGraphique();
  
     return EXIT_SUCCESS;

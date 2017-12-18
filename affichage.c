@@ -133,7 +133,7 @@ int modif(int t, int c, int l)
 }
 
 
-void affichage(int c, int l,int image,int comp)
+int affichage(int c, int l,int image,int comp)
 {
 	int a=(c*l)-1;
 	int i,x=0;
@@ -154,6 +154,8 @@ void affichage(int c, int l,int image,int comp)
 			clear();
 			ChargerImage("./image1.jpg",10, 10,0,0,570,270);
 			compteur(0,comp,280);
+			x=fin(280);
+			return x;
 		}
 
 
@@ -173,6 +175,8 @@ void affichage(int c, int l,int image,int comp)
 			clear();
 			ChargerImage("./image2.png",10, 10,0,0,332,300);
 			compteur(0,comp, 310);
+			x=fin(310);
+			return x;
 		}
 
 
@@ -192,9 +196,11 @@ void affichage(int c, int l,int image,int comp)
 			clear();
 			ChargerImage("./image3.jpg",10, 10,0,0,640,426);
 			compteur(0,comp, 436);
+			x=fin(436);
+			return x;
 		}
 	}
-	
+	return 0;
 
 }
 
