@@ -9,48 +9,57 @@ Demarquet
 #include <stdlib.h>
 #include "entete.h"
 
+void clear(void)
+{
+  couleur coul;
+  coul = CouleurParComposante(255, 255, 255);
+  EffacerEcran(coul);
+}
+
+int compteur(int x, int comp, unsigned int yy)
+{
+  char tab[4];
+   if (x==1 && comp>=0 && comp<1000)
+    {
+      comp++;
+      
+      ChargerImage("./compteur.png",15, yy+21,0,0,30,20);
+    }
+    sprintf(tab,"%d",comp);
+    EcrireTexte(20, yy+20, "nombre de coup : ", 1);
+    DessinerRectangle(15, yy+21, 30, 20);
+    EcrireTexte(20, yy+40, tab, 1);
+    return comp;
+}
 int main(void)
 {
   unsigned int c, l, yy;
-  int x, compteur=0, image;
-  couleur coul;
-  char tab[4], nom[11];
-
-  coul = CouleurParComposante(255, 255, 255);
-
-    /*seg fault*/
-    //ChoisirCouleurDessin(coul);
+  int x, image, comp=0;
+  char nom[11];
 
     InitialiserGraphique();
-    CreerFenetre(10,10,700,1000);
+    CreerFenetre(10,10,700,700);
 
-    EffacerEcran(coul);
+    clear();
     image=choisirimage();
 
-    EffacerEcran(coul);
+    clear();
     c=nbcolone();
-    EffacerEcran(coul);
+    clear();
     l=nbligne();
-    EffacerEcran(coul);
+    clear();
 
     dec=(struct image *) malloc(c*l*sizeof(struct image));
     pos=(struct position *) malloc(c*l*sizeof(struct position));
 
    	yy=decoupage(c,l,image);
    	melange(c,l);
-   	affichage(c,l,image);
     
-    while(1)
+    while(comp>=0)
     {
-    x=control(c,l,image);
-    if (x==1 && compteur<1000)
-    {
-      compteur++;
-      EcrireTexte(20, yy+20, "nombre de coup : ", 1);
-      sprintf(tab,"%d",compteur);
-      DessinerRectangle(20, yy+21, 20, 20);
-      EcrireTexte(20, yy+40, tab, 1);
-    }
+      affichage(c,l,image,comp);
+      x=control(c,l,image);
+      comp=compteur(x,comp,yy);   
     }
 
     free(dec);

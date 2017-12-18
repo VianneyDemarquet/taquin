@@ -45,6 +45,8 @@ int souris(void)
 int control(int c, int l,int image)
 {
 	int x=5;
+	while(x==5)
+	{
 	if (ToucheEnAttente()==1)
 	{
 		x=clavier();
@@ -54,9 +56,111 @@ int control(int c, int l,int image)
 	}
 	if (x!=5)
 	{
-		modif(x,c,l);
-		affichage(c,l,image);
-		return 1;
+		x=modif(x,c,l);
+		if (x==0)
+		{
+			x=5;
+		}
 	}
+	}
+	return 1;
+}
+
+int iclavier(void)
+{
+	unsigned long x=0;
+	x=Touche();
+	if (x==XK_Left)
+	{
+		return 0;
+	} else if (x==XK_Right)
+	{
+		return 1;
+	} else if (x==XK_Return)
+	{
+		return 2;
+	}
+}
+
+int isouris(void)
+{
+	if (_X>15 && _X<135)
+	{
+		return 0;
+	} else if (_X>445 && _X<545)
+	{
+		return 1;
+	}else if (_X>245 && _X<345)
+	{
+		return 2;
+	}
+}
+int nbsouris(void)
+{
+	if (_X>=100 && _X<=135)
+	{
+		return 3;
+	}else if (_X>=170 && _X<=205)
+	{
+		return 4;
+	}else if (_X>=240 && _X<=275)
+	{
+		return 5;
+	}else if (_X>=310 && _X<=345)
+	{
+		return 6;
+	}else if (_X>=380 && _X<=415)
+	{
+		return 7;
+	}else if (_X>=450 && _X<=485)
+	{
+		return 8;
+	}
+	return 0;
+}
+
+int nbclavier(void)
+{
+	int x=Touche();
+	
+		x=Touche();
+		if (x==XK_3)
+		{
+			return 3;
+		}else if (x==XK_4)
+		{
+			return 4;
+		}else if (x==XK_5)
+		{
+			return 5;
+		}else if (x==XK_6)
+		{
+			return 6;
+		}else if (x==XK_7)
+		{
+			return 7;
+		}else if (x==XK_8)
+		{
+			return 8;
+		}else if (x==XK_KP_3)
+		{
+			return 3;
+		}else if (x==XK_KP_4)
+		{
+			return 4;
+		}else if (x==XK_KP_5)
+		{
+			return 5;
+		}else if (x==XK_KP_6)
+		{
+			return 6;
+		}else if (x==XK_KP_7)
+		{
+			return 7;
+		}else if (x==XK_KP_8)
+		{
+			return 8;
+		}
+	
 	return 0;
 }

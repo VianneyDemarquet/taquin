@@ -28,18 +28,27 @@ struct position *pos;
 /*affichage*/
 int decoupage(int c, int l, int image);
 
-void affichage(int c, int l,int image);
+void affichage(int c, int l,int image,int compteur);
 
 void melange(int c, int l);
 
-void modif(int x, int c, int l);
+int modif(int x, int c, int l);
 
 /*control*/
 int control(int x, int c,int image);
+int iclavier(void);
+int isouris(void);
+int nbsouris(void);
+int nbclavier(void);
 
 /*menu*/
 int choisirimage(void);
 int nbcolone(void);
 int nbligne(void);
 
+/*compteur*/
+int compteur(int x, int comp, unsigned int yy);
+
+/*efface*/
+void clear(void);
 #endif /*  ENTETE_H */

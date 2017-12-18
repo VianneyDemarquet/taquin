@@ -9,39 +9,7 @@ Demarquet
 #include "entete.h"
 
 
-
-
-int iclavier(void)
-{
-	unsigned long x=0;
-	x=Touche();
-	if (x==XK_Left)
-	{
-		return 0;
-	} else if (x==XK_Right)
-	{
-		return 1;
-	} else if (x==XK_Return)
-	{
-		return 2;
-	}
-}
-
-int isouris(void)
-{
-	if (_X>15 && _X<135)
-	{
-		return 0;
-	} else if (_X>445 && _X<545)
-	{
-		return 1;
-	}else if (_X>245 && _X<345)
-	{
-		return 2;
-	}
-}
-
-void affichagemi(int x)
+void affichagei(int x)
 {
 		
 	if (x!=1)
@@ -62,7 +30,7 @@ void affichagemi(int x)
 
 int choisirimage(void)
 {
-	int x=2,y=0,z=5;
+	int x=1,y=0,z=5;
 	couleur coul;
 	coul = CouleurParComposante(255, 255, 255);
 	while (y==0)
@@ -71,7 +39,7 @@ int choisirimage(void)
 		
 		if (x==1)
 		{
-			ChargerImage("./image1.jpg",10, 10,0,0,570,240);
+			ChargerImage("./image1.jpg",10, 10,0,0,570,270);
 		}else if(x==2)
 		{
 			ChargerImage("./image2.png",10, 10,0,0,332,300);
@@ -79,7 +47,7 @@ int choisirimage(void)
 		{
 			ChargerImage("./image3.jpg",10, 10,0,0,640,426);
 		}
-		affichagemi(x);
+		affichagei(x);
 
 		if (ToucheEnAttente()==1)
 		{
@@ -92,11 +60,11 @@ int choisirimage(void)
 		if (z==0 && x>1)
 		{
 			x--;
-			EffacerEcran(coul);
+			clear();
 		} else if(z==1 && x<3)
 		{
 			x++;
-			EffacerEcran(coul);
+			clear();
 		} 
 		if(z==2)
 		{
@@ -106,12 +74,27 @@ int choisirimage(void)
 	}
 }
 
+void affichagenb(void)
+{
+	char tab[2];
+	int x=100;
+
+	for (int i = 3; i <= 8; ++i, x+=70)
+	{
+		sprintf(tab,"%d",i);
+		EcrireTexte(x,200,tab,2);
+		DessinerRectangle(x-10,175,35,30);
+	}
+	
+}
+
 int nbcolone(void)
 {
 	int x=0;
 	affichagenb();
-	EcrireTexte(245,20,"nombre de colonnes",2);
-	while (x<3 || x>8)
+	EcrireTexte(200,50,"nombre de colonnes",2);
+	
+	while (x<3)
 	{
 		if (ToucheEnAttente()==1)
 		{
@@ -120,16 +103,17 @@ int nbcolone(void)
 		{
 			x=nbsouris();
 		}
-
 	}
+	return x;
 }
 
 int nbligne(void)
 {
 	int x=0;
 	affichagenb();
-	EcrireTexte(245,20,"nombre de lignes",2);
-	while (x<3 || x>8)
+	EcrireTexte(200,50,"nombre de lignes",2);
+	
+	while (x<3)
 	{
 		if (ToucheEnAttente()==1)
 		{
@@ -138,21 +122,6 @@ int nbligne(void)
 		{
 			x=nbsouris();
 		}
-
 	}
-}
-
-int nbsouris(void)
-{
-
-}
-
-int nbclavier(void)
-{
-	/*pavé num + shift*/
-}
-
-void affichagenb(void)
-{
-	/*chiffre*/
+	return x;
 }

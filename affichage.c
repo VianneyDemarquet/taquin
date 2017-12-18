@@ -61,7 +61,7 @@ void melange(int c, int l)
 	int i,t;
 	srand((unsigned int) time(NULL));
 	
-	for (i = 0; i < 500; ++i)
+	for (i = 0; i < 5; ++i)
 	{
 		t=rand();
 		t=t%4;
@@ -69,7 +69,7 @@ void melange(int c, int l)
 	}
 }
 
-void modif(int t, int c, int l)
+int modif(int t, int c, int l)
 {
 	int a;
 	if (t==0 && dec[0].pose>0 && (dec[0].pose)%c!=0)
@@ -84,6 +84,7 @@ void modif(int t, int c, int l)
 				}
 			}
 			dec[0].pose--;
+			return 1;
 
 		}else if (t==1 && (dec[0].pose)>=c)
 		{
@@ -97,6 +98,7 @@ void modif(int t, int c, int l)
 				}
 			}
 			dec[0].pose = dec[0].pose-c;
+			return 1;
 
 		}else if (t==2 && dec[0].pose<(c*l) && (dec[0].pose+1)%c!=0)
 		{
@@ -110,6 +112,7 @@ void modif(int t, int c, int l)
 				}
 			}
 			dec[0].pose++;
+			return 1;
 
 		}else if (t==3 && (dec[0].pose)<((c*l))-c)
 		{
@@ -123,11 +126,14 @@ void modif(int t, int c, int l)
 				}
 			}
 			dec[0].pose = dec[0].pose+c;
-		}
+			return 1;
+
+		} else
+		return 0;
 }
 
 
-void affichage(int c, int l,int image)
+void affichage(int c, int l,int image,int comp)
 {
 	int a=(c*l)-1;
 	int i,x=0;
@@ -136,20 +142,59 @@ void affichage(int c, int l,int image)
 			for (i = 0; i < c*l; ++i)
 		{
 			ChargerImage("./image1.jpg",((pos[dec[i].pose].x)+1), ((pos[dec[i].pose].y)+1), (dec[i].x), (dec[i].y), (dec[i].xx), (dec[i].yy));
+
+			if (dec[i].x==pos[dec[i].pose].x && dec[i].y==pos[dec[i].pose].y)
+			{
+				x++;
+			}
 		}
+
+		if (x==i-1)
+		{
+			clear();
+			ChargerImage("./image1.jpg",10, 10,0,0,570,270);
+			compteur(0,comp,280);
+		}
+
+
 	}else if (image==2)
 	{
 			for (i = 0; i < c*l; ++i)
 		{
 			ChargerImage("./image2.png",((pos[dec[i].pose].x)+1), ((pos[dec[i].pose].y)+1), (dec[i].x), (dec[i].y), (dec[i].xx), (dec[i].yy));
+			if (dec[i].x==pos[dec[i].pose].x && dec[i].y==pos[dec[i].pose].y)
+			{
+				x++;
+			}
 		}
+
+		if (x==i-1)
+		{
+			clear();
+			ChargerImage("./image2.png",10, 10,0,0,332,300);
+			compteur(0,comp, 310);
+		}
+
+
 	}if (image==3)
 	{
 			for (i = 0; i < c*l; ++i)
 		{
 			ChargerImage("./image3.jpg",((pos[dec[i].pose].x)+1), ((pos[dec[i].pose].y)+1), (dec[i].x), (dec[i].y), (dec[i].xx), (dec[i].yy));
+			if (dec[i].x==pos[dec[i].pose].x && dec[i].y==pos[dec[i].pose].y)
+			{
+				x++;
+			}
+		}
+
+		if (x==i-1)
+		{
+			clear();
+			ChargerImage("./image3.jpg",10, 10,0,0,640,426);
+			compteur(0,comp, 436);
 		}
 	}
+	
 
 }
 
