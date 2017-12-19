@@ -8,6 +8,10 @@ Demarquet
 #include <stdlib.h>
 #include "entete.h"
 
+/*
+cette fonction permet de déplacé les tuiles du takin à l'aide du clavier
+grâce à la valeur de la touche entré
+*/
 int clavier(void)
 {
 	unsigned long x=0;
@@ -26,6 +30,10 @@ int clavier(void)
 		return 3;
 }	
 
+/*
+cette fonction permet de déplacé les tuiles du takin à l'aide de la souris
+grâce à la position du curseur au moment du clic
+*/
 int souris(void)
 {
 
@@ -42,6 +50,11 @@ int souris(void)
 		return 3;
 }
 
+/*
+cette fonction permet de sélectionné le périphérique utilisé pour le mouvement de la tuile
+grace au fonction "clavier" et "souris" pour utilisé respectivement le clavier et la souris
+puis appelle la fonction "modif" pour effectué ce mouvement.
+*/
 int control(int c, int l,int image)
 {
 	int x=5;
@@ -66,6 +79,11 @@ int control(int c, int l,int image)
 	return 1;
 }
 
+/*
+cette fonction permet de selectioné les si l'on veut passé à l'image suivante,
+l'image précédente ou choisir cette image tout en utilisant le clavier
+grâce à la valeur de la touche entré
+*/
 int iclavier(void)
 {
 	unsigned long x=Touche();
@@ -81,6 +99,11 @@ int iclavier(void)
 	}
 }
 
+/*
+cette fonction permet de selectioné les si l'on veut passé à l'image suivante,
+l'image précédente ou choisir cette image tout en utilisant la souris
+grâce à la position du curseur au moment du clic
+*/
 int isouris(void)
 {
 	if (_X>15 && _X<135)
@@ -94,6 +117,11 @@ int isouris(void)
 		return 2;
 	}
 }
+
+/*
+cette fonction renvoie le nombre de ligne ou de cologne désiré à l'aide de la souris
+grâce à la position du curseur au moment du clic
+*/
 int nbsouris(void)
 {
 	if (_X>=100 && _X<=135)
@@ -118,6 +146,10 @@ int nbsouris(void)
 	return 0;
 }
 
+/*
+cette fonction renvoie le nombre de ligne ou de cologne désiré à l'aide du clavier
+grâce à la valeur de la touche entré
+*/
 int nbclavier(void)
 {
 	int x=Touche();
@@ -164,6 +196,10 @@ int nbclavier(void)
 	return 0;
 }
 
+/*
+cette fonction permet de choisir si l'on veut quité le jeux ou faire une nouvelle partie
+grâce à la valeur de la touche entré
+*/
 int menuclavier(void)
 {
 	unsigned long x=Touche();
@@ -177,6 +213,10 @@ int menuclavier(void)
 	return 0;
 }
 
+/*
+cette fonction permet de choisir si l'on veut quité le jeux ou faire une nouvelle partie
+grâce à la position du curseur au moment du clic
+*/
 int menusouris(void)
 {
 	if (_X>145 && _X<290)

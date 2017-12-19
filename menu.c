@@ -8,7 +8,9 @@ Demarquet
 #include <stdlib.h>
 #include "entete.h"
 
-
+/*
+cette fonction affiche les boutons: precedent, suivant et choisir
+*/
 void affichagei(int x)
 {
 		
@@ -27,7 +29,13 @@ void affichagei(int x)
 	
 }
 
-
+/*
+cette fonction permet d'afficher une image ainsi que d'appeler les fonctions:
+- "affichagei" pour afficher les boutons
+- "iclavier" pour changer l'image ou de menu à l'aide du clavier
+- "isouris" pour changer l'image ou de menu à l'aide de la souris
+et renvoi le numéro de l'image choisi
+*/
 int choisirimage(void)
 {
 	int x=1,y=0,z=5;
@@ -74,6 +82,9 @@ int choisirimage(void)
 	}
 }
 
+/*
+cette fonction affiche les chiffre de 3 à 8
+*/
 void affichagenb(void)
 {
 	char tab[2];
@@ -88,6 +99,12 @@ void affichagenb(void)
 	
 }
 
+/*
+cette fonction affiche choix nombre de colonnes revoi le nombre choisi 
+aprés avoir fait appel au fonction:
+-"nbclavier" qui permet de selectioné le nombre de colonnes voulu en utilisant le clavier 
+-"nbsouris"qui permet de selectioné le nombre de colonnes voulu en utilisant la souris 
+*/
 int nbcolone(void)
 {
 	int x=0;
@@ -107,6 +124,12 @@ int nbcolone(void)
 	return x;
 }
 
+/*
+cette fonction affiche choix nombre de lignes revoi le nombre choisi 
+aprés avoir fait appel au fonction:
+-"nbclavier" qui permet de selectioné le nombre de lignes voulu en utilisant le clavier 
+-"nbsouris"qui permet de selectioné le nombre de lignes voulu en utilisant la souris 
+*/
 int nbligne(void)
 {
 	int x=0;
@@ -126,10 +149,15 @@ int nbligne(void)
 	return x;
 }
 
-
-int fin(int yy)
+/*
+cette fonction affiche le menu de fin avec les choix de recommencer et quité 
+pour sélectionné les choix cette fonction fait appelle à la fonction "menuclavier" 
+utiliser le clavier et "menusouris" pour utilisé la souris
+*/
+int fin(int yy,int comp)
 {
 	int x=0;
+	compteur(0,comp,yy);
 	DessinerRectangle(290, yy+28, 80, 25);
 	EcrireTexte(300, yy+50, "gagne", 2);
 	EcrireTexte(150, yy+120, "recommencer", 2);

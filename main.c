@@ -9,6 +9,9 @@ Demarquet
 #include <stdlib.h>
 #include "entete.h"
 
+/*
+cette fonction éfface l'affichage
+*/
 void clear(void)
 {
   couleur coul;
@@ -16,6 +19,11 @@ void clear(void)
   EffacerEcran(coul);
 }
 
+/*
+cette fonction affiche le nombre de coup réalisé en incrémentant puis affichant
+la varible compteur
+qui est convertit pour pouvoir être afficher 
+*/
 int compteur(int x, int comp, unsigned int yy)
 {
   char tab[4];
@@ -31,6 +39,11 @@ int compteur(int x, int comp, unsigned int yy)
     EcrireTexte(20, yy+40, tab, 1);
     return comp;
 }
+
+/*
+cette fonction permet la continuation du jeux, la création d'une nouvelle partie
+ou le fonctionnement de la partie en coure celon les cas 
+*/
 int main(void)
 {
   unsigned int c, l, yy;

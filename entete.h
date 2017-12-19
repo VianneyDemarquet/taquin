@@ -50,7 +50,7 @@ int menusouris(void);
 int choisirimage(void);
 int nbcolone(void);
 int nbligne(void);
-int fin(int yy);
+int fin(int yy,int comp);
 
 /*compteur*/
 int compteur(int x, int comp, unsigned int yy);

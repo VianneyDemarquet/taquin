@@ -10,7 +10,10 @@ Demarquet
 #include "entete.h"
 
 
-
+/*
+cette fonction permet de fractioné l'image choisie (image) dans en utilisant 
+le nombre de colone (c) et le nomobre de ligne (l) voulue
+*/
 int decoupage(int c, int l, int image)
 {
 	unsigned int a=0;
@@ -55,13 +58,16 @@ int decoupage(int c, int l, int image)
 }
 
 
-
+/*
+cette fonction créé une valeur qui coréspond à un déplacement horizontal ou vertical
+que doit effectué la fonction "modif" qui est ensuite appelé.
+*/
 void melange(int c, int l)
 {
 	int i,t;
 	srand((unsigned int) time(NULL));
 	
-	for (i = 0; i < 5; ++i)
+	for (i = 0; i < 500; ++i)
 	{
 		t=rand();
 		t=t%4;
@@ -69,6 +75,10 @@ void melange(int c, int l)
 	}
 }
 
+/*
+cette fonction modifie la position de la tuile qui à été retiré en fonction 
+de la valeur du mouvement désiré
+*/
 int modif(int t, int c, int l)
 {
 	int a;
@@ -132,7 +142,10 @@ int modif(int t, int c, int l)
 		return 0;
 }
 
-
+/*
+cette fonction affiche les positions des différente tuile de la partie en cour
+ou affiche l'image et appelle la fonction "fin" si la partie est finie
+*/
 int affichage(int c, int l,int image,int comp)
 {
 	int a=(c*l)-1;
@@ -153,8 +166,7 @@ int affichage(int c, int l,int image,int comp)
 		{
 			clear();
 			ChargerImage("./image1.jpg",10, 10,0,0,570,270);
-			compteur(0,comp,280);
-			x=fin(280);
+			x=fin(280,comp);
 			return x;
 		}
 
@@ -174,8 +186,7 @@ int affichage(int c, int l,int image,int comp)
 		{
 			clear();
 			ChargerImage("./image2.png",10, 10,0,0,332,300);
-			compteur(0,comp, 310);
-			x=fin(310);
+			x=fin(310, comp);
 			return x;
 		}
 
@@ -195,8 +206,7 @@ int affichage(int c, int l,int image,int comp)
 		{
 			clear();
 			ChargerImage("./image3.jpg",10, 10,0,0,640,426);
-			compteur(0,comp, 436);
-			x=fin(436);
+			x=fin(436,comp);
 			return x;
 		}
 	}
